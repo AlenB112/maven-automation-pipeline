@@ -1,6 +1,7 @@
 package com.devops.lab;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -22,9 +23,9 @@ public class AppTest
     public void verifySystemBottleneckValidation() {
         boolean constraintDefectDetected = false;
 
-        org.junit.jupiter.api.Assertions.assertFalse(
-            constraintDefectDetected,
-            "CRITICAL: System bottleneck or defect detected in value stream!"
-        );
+        assertFalse(
+            "CRITICAL: System bottleneck or defect detected in value stream!",
+            constraintDefectDetected
+        );   
     }
 }
