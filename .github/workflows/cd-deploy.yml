@@ -1,0 +1,28 @@
+
+name: DevOps Continuous Deployment Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build and Test Application
+        run: mvn clean package
+
+      - name: Deploy Application
+        run: echo "Application deployed automatically without manual approval."
