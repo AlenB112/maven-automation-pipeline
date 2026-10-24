@@ -1,10 +1,9 @@
-
 name: DevOps Continuous Deployment Pipeline
 
 on:
-  workflow_dispatch:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -24,5 +23,10 @@ jobs:
       - name: Build and Test Application
         run: mvn clean package
 
+      - name: Set up Docker Compose
+        run: |
+          docker --version
+          docker compose version
+
       - name: Deploy Application
-        run: echo "Application deployed automatically without manual approval."
+        run: docker compose up -d --force-recreate
